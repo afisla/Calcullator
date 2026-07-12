@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Pilih unit usaha">
-    <title>Daftar Unit Usaha — K2Hub</title>
+    <meta name="description" content="Dashboard warung K2Hub">
+    <title>Dashboard Koperasi Al-Amanah — K2Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -97,37 +97,51 @@
         
     </style>
 </head>
-<body><div style="min-height:100vh;background:#F8F5F2;display:flex;flex-direction:column;align-items:center;padding:24px 20px;position:relative;">
-    <div style="width:100%;max-width:600px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-            <a href="/portal-pemilik" style="display:inline-flex;align-items:center;gap:8px;border:2.5px solid #F9E6A7;padding:8px 16px;border-radius:50px;color:#96A480;text-decoration:none;font-size:13px;font-weight:600;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Kembali
-            </a>
-            <span style="font-family:'Fredoka One',cursive;font-size:22px;background:linear-gradient(90deg,#96A480,#BA797D,#F9E6A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #5c4534;">K2Hub</span>
-        </div>
-        <div style="text-align:center;margin-bottom:32px;">
-            <h1 style="font-size:22px;font-weight:800;color:#BA797D;">Daftar Warung Kantin</h1>
-            <p style="font-size:13px;color:#96A480;">Pilih warung Anda untuk login</p>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-            <a href="/warung/warung-1/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🏪</div>
-                <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Koperasi Al-Amanah</div>
-                    <div style="font-size:12px;color:#96A480;">koperasi · Buka</div>
-                </div>
-                <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
-            </a>
-            <a href="/warung/warung-2/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🍜</div>
-                <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Warung Bakso & Mie Ayam</div>
-                    <div style="font-size:12px;color:#96A480;">kantin · Buka</div>
-                </div>
-                <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
-            </a>
+<body><div class="app-wrap">
+    <div class="app-header">
+        <div class="header-left">
+            <a href="javascript:history.back()" class="btn-back">‹ Kembali</a>
+            <div class="header-logo-wrap" style="font-size:22px;">🏪</div>
+            <div><div class="brand-text-k2" style="font-size:18px;">Koperasi Al-Amanah</div><div class="header-subtitle">Buka · 🕐 06:30 - 16:00</div></div>
         </div>
     </div>
-    <div style="position:absolute;bottom:12px;text-align:center;font-size:11px;color:#96A480;font-weight:500;">© 2025 K2Hub — SMP Al Amanah</div>
+    <div class="app-content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+            <div style="background:white;border-radius:16px;padding:14px;text-align:center;border:1px solid rgba(231,100,142,0.08);">
+                <div style="font-size:28px;">📋</div>
+                <div style="font-size:24px;font-weight:900;color:#BA797D;">1</div>
+                <div style="font-size:11px;color:#96A480;font-weight:600;">Pesanan Baru</div>
+            </div>
+            <div style="background:white;border-radius:16px;padding:14px;text-align:center;border:1px solid rgba(231,100,142,0.08);">
+                <div style="font-size:28px;">✅</div>
+                <div style="font-size:24px;font-weight:900;color:#96A480;">45</div>
+                <div style="font-size:11px;color:#96A480;font-weight:600;">Selesai Hari Ini</div>
+            </div>
+        </div>
+        <div class="section-title">Pesanan Baru</div>
+        <div class="order-status-card">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px;">
+                <div>
+                    <div style="font-size:20px;font-family:'Fredoka One',cursive;color:#BA797D;">No. A001</div>
+                    <div style="font-size:12px;color:#96A480;font-weight:600;">Budi Santoso · Kelas VII-A</div>
+                </div>
+                <span class="badge badge-open" style="background:#F9E6A7;color:#92400e;">⏳ Baru</span>
+            </div>
+            <div style="font-size:12px;margin-bottom:8px;color:#2D1B3D;">
+                <div>🍚 Nasi Goreng × 2</div>
+                <div>🥤 Es Teh × 1</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f0f0f0;padding-top:10px;">
+                <span style="font-weight:800;color:#96A480;font-size:14px;">Rp16.000</span>
+                <div style="display:flex;gap:8px;">
+                    <button style="padding:6px 14px;border-radius:999px;border:2px solid #BA797D;background:transparent;color:#BA797D;font-size:12px;font-weight:700;cursor:pointer;">Tolak</button>
+                    <button style="padding:6px 14px;border-radius:999px;background:#96A480;color:white;border:none;font-size:12px;font-weight:700;cursor:pointer;">Proses</button>
+                </div>
+            </div>
+        </div>
+        <div class="empty-state">
+            <span class="empty-icon">📋</span>
+            <div class="empty-title">Tidak ada pesanan lain</div>
+        </div>
+    </div>
 </div>

@@ -609,18 +609,18 @@ $ownerListHtml .= <<<HTML
             <p style="font-size:13px;color:#96A480;">Pilih warung Anda untuk login</p>
         </div>
         <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-            <a href="/warung/kantin-hijau/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🍜</div>
+            <a href="/warung/warung-1/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
+                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🏪</div>
                 <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Kantin Hijau</div>
-                    <div style="font-size:12px;color:#96A480;">kantin · Buka</div>
+                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Koperasi Al-Amanah</div>
+                    <div style="font-size:12px;color:#96A480;">koperasi · Buka</div>
                 </div>
                 <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
             </a>
-            <a href="/warung/kantin-biru/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🥤</div>
+            <a href="/warung/warung-2/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
+                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🍜</div>
                 <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Kantin Biru</div>
+                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Warung Bakso & Mie Ayam</div>
                     <div style="font-size:12px;color:#96A480;">kantin · Buka</div>
                 </div>
                 <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
@@ -692,15 +692,54 @@ mkdir("{$outDir}/warung/kantin-hijau", 0755, true);
 file_put_contents("{$outDir}/warung/kantin-hijau/login.html", $warungLoginHtml);
 echo "  OK: /warung/kantin-hijau/login\n";
 
-// 11. Warung dashboard
-$warungDashboardHtml = pageHeader(['title' => 'Dashboard Warung', 'desc' => 'Dashboard warung K2Hub']);
-$warungDashboardHtml .= <<<HTML
+// Generate all 7 store login pages
+$stores = [
+    ['id' => 1, 'name' => 'Koperasi Al-Amanah', 'unit' => 'koperasi', 'icon' => '🏪', 'pin' => '202619'],
+    ['id' => 2, 'name' => 'Warung Bakso & Mie Ayam', 'unit' => 'kantin', 'icon' => '🍜', 'pin' => '202628'],
+    ['id' => 3, 'name' => 'Warung Gorengan', 'unit' => 'kantin', 'icon' => '🍤', 'pin' => '202637'],
+    ['id' => 4, 'name' => 'Warung Sempol', 'unit' => 'kantin', 'icon' => '🍡', 'pin' => '202646'],
+    ['id' => 5, 'name' => 'Warung Madura', 'unit' => 'kantin', 'icon' => '🍛', 'pin' => '202655'],
+    ['id' => 6, 'name' => 'Warung Nasi', 'unit' => 'kantin', 'icon' => '🍱', 'pin' => '202664'],
+    ['id' => 7, 'name' => 'Warung Batagor Cireng Pempek', 'unit' => 'kantin', 'icon' => '🥟', 'pin' => '202673'],
+];
+
+foreach ($stores as $store) {
+    $warungLoginHtml = pageHeader(['title' => 'Login ' . $store['name'], 'desc' => 'Login dashboard ' . $store['name']]);
+    $warungLoginHtml .= <<<HTML
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#F8F5F2;">
+    <div style="width:100%;max-width:400px;background:#F8F5F2;border:1px solid #F9E6A7;border-radius:28px;padding:32px 24px;">
+        <div style="text-align:center;margin-bottom:24px;">
+            <div style="width:64px;height:64px;border-radius:16px;background:rgba(186,121,125,0.15);border:1px solid rgba(186,121,125,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:32px;">{$store['icon']}</div>
+            <h1 style="font-size:20px;font-weight:800;color:#BA797D;">Login Warung</h1>
+            <p style="font-size:13px;color:#96A480;">{$store['name']}</p>
+        </div>
+        <form onsubmit="event.preventDefault();alert('Masukkan PIN 4 digit untuk login');">
+            <div style="margin-bottom:16px;">
+                <label style="font-size:11px;font-weight:700;color:#96A480;margin-bottom:6px;display:block;">PIN Pemilik</label>
+                <input type="password" placeholder="••••" maxlength="4" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid #F9E6A7;font-family:inherit;font-size:18px;background:#F8F5F2;color:#BA797D;outline:none;text-align:center;letter-spacing:8px;">
+            </div>
+            <button type="submit" style="width:100%;padding:14px;background:#BA797D;color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;">Login</button>
+        </form>
+        <a href="/portal-pemilik/daftar" style="display:block;text-align:center;margin-top:16px;font-size:12px;color:#96A480;text-decoration:none;">← Pilih warung lain</a>
+    </div>
+</div>
+HTML;
+    $dir = "{$outDir}/warung/warung-{$store['id']}";
+    if (!is_dir($dir)) mkdir($dir, 0755, true);
+    file_put_contents("{$dir}/login.html", $warungLoginHtml);
+    echo "  OK: /warung/warung-{$store['id']}/login\n";
+}
+
+// Warung dashboards
+foreach ($stores as $store) {
+    $warungDashboardHtml = pageHeader(['title' => 'Dashboard ' . $store['name'], 'desc' => 'Dashboard warung K2Hub']);
+    $warungDashboardHtml .= <<<HTML
 <div class="app-wrap">
     <div class="app-header">
         <div class="header-left">
             <a href="javascript:history.back()" class="btn-back">‹ Kembali</a>
-            <div class="header-logo-wrap" style="font-size:22px;">🍜</div>
-            <div><div class="brand-text-k2" style="font-size:18px;">Kantin Hijau</div><div class="header-subtitle">Buka · 🕐 06:30 - 16:00</div></div>
+            <div class="header-logo-wrap" style="font-size:22px;">{$store['icon']}</div>
+            <div><div class="brand-text-k2" style="font-size:18px;">{$store['name']}</div><div class="header-subtitle">Buka · 🕐 06:30 - 16:00</div></div>
         </div>
     </div>
     <div class="app-content">
@@ -744,8 +783,10 @@ $warungDashboardHtml .= <<<HTML
     </div>
 </div>
 HTML;
-file_put_contents("{$outDir}/warung/kantin-hijau/dashboard.html", $warungDashboardHtml);
-echo "  OK: /warung/kantin-hijau/dashboard\n";
+    $dir = "{$outDir}/warung/warung-{$store['id']}";
+    file_put_contents("{$dir}/dashboard.html", $warungDashboardHtml);
+    echo "  OK: /warung/warung-{$store['id']}/dashboard\n";
+}
 
 // 12. Order status (pesanan)
 $orderStatusHtml = pageHeader(['title' => 'Status Pesanan', 'desc' => 'Status pesanan K2Hub']);

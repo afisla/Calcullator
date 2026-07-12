@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Pilih unit usaha">
-    <title>Daftar Unit Usaha — K2Hub</title>
+    <meta name="description" content="Login dashboard Warung Sempol">
+    <title>Login Warung Sempol — K2Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -97,37 +97,20 @@
         
     </style>
 </head>
-<body><div style="min-height:100vh;background:#F8F5F2;display:flex;flex-direction:column;align-items:center;padding:24px 20px;position:relative;">
-    <div style="width:100%;max-width:600px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-            <a href="/portal-pemilik" style="display:inline-flex;align-items:center;gap:8px;border:2.5px solid #F9E6A7;padding:8px 16px;border-radius:50px;color:#96A480;text-decoration:none;font-size:13px;font-weight:600;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Kembali
-            </a>
-            <span style="font-family:'Fredoka One',cursive;font-size:22px;background:linear-gradient(90deg,#96A480,#BA797D,#F9E6A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #5c4534;">K2Hub</span>
+<body><div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#F8F5F2;">
+    <div style="width:100%;max-width:400px;background:#F8F5F2;border:1px solid #F9E6A7;border-radius:28px;padding:32px 24px;">
+        <div style="text-align:center;margin-bottom:24px;">
+            <div style="width:64px;height:64px;border-radius:16px;background:rgba(186,121,125,0.15);border:1px solid rgba(186,121,125,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:32px;">🍡</div>
+            <h1 style="font-size:20px;font-weight:800;color:#BA797D;">Login Warung</h1>
+            <p style="font-size:13px;color:#96A480;">Warung Sempol</p>
         </div>
-        <div style="text-align:center;margin-bottom:32px;">
-            <h1 style="font-size:22px;font-weight:800;color:#BA797D;">Daftar Warung Kantin</h1>
-            <p style="font-size:13px;color:#96A480;">Pilih warung Anda untuk login</p>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-            <a href="/warung/warung-1/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🏪</div>
-                <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Koperasi Al-Amanah</div>
-                    <div style="font-size:12px;color:#96A480;">koperasi · Buka</div>
-                </div>
-                <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
-            </a>
-            <a href="/warung/warung-2/login" style="background:#F8F5F2;border:2.5px solid #F9E6A7;border-radius:20px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:16px;">
-                <div style="font-size:36px;width:56px;height:56px;border-radius:14px;border:2.5px solid #F9E6A7;display:flex;align-items:center;justify-content:center;">🍜</div>
-                <div style="flex:1;">
-                    <div style="font-size:16px;font-weight:700;color:#BA797D;">Warung Bakso & Mie Ayam</div>
-                    <div style="font-size:12px;color:#96A480;">kantin · Buka</div>
-                </div>
-                <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(150,164,128,0.12);color:#96A480;">LOGIN →</span>
-            </a>
-        </div>
+        <form onsubmit="event.preventDefault();alert('Masukkan PIN 4 digit untuk login');">
+            <div style="margin-bottom:16px;">
+                <label style="font-size:11px;font-weight:700;color:#96A480;margin-bottom:6px;display:block;">PIN Pemilik</label>
+                <input type="password" placeholder="••••" maxlength="4" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid #F9E6A7;font-family:inherit;font-size:18px;background:#F8F5F2;color:#BA797D;outline:none;text-align:center;letter-spacing:8px;">
+            </div>
+            <button type="submit" style="width:100%;padding:14px;background:#BA797D;color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;">Login</button>
+        </form>
+        <a href="/portal-pemilik/daftar" style="display:block;text-align:center;margin-top:16px;font-size:12px;color:#96A480;text-decoration:none;">← Pilih warung lain</a>
     </div>
-    <div style="position:absolute;bottom:12px;text-align:center;font-size:11px;color:#96A480;font-weight:500;">© 2025 K2Hub — SMP Al Amanah</div>
 </div>

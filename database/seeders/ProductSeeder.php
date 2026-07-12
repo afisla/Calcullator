@@ -10,9 +10,9 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        \DB::statement('PRAGMA foreign_keys = OFF;');
         Product::truncate();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        \DB::statement('PRAGMA foreign_keys = ON;');
 
         $products = [
             // 1. Koperasi Al-Amanah
