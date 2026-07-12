@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Dashboard warung K2Hub">
+    <title>Dashboard Warung — K2Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --k2-primary: #BA797D; --k2-primary-dark: #96A480; --k2-light-pink: #F9E6A7;
+            --k2-green: #96A480; --k2-neutral: #F9E6A7; --k2-white: #F8F5F2;
+            --k2-dark: #BA797D; --k2-bg: #F8F5F2; --k2-card-bg: #F8F5F2;
+            --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 30px; --r-full: 999px;
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html,body{font-family:'Nunito',sans-serif;background:var(--k2-bg);color:var(--k2-dark);min-height:100vh;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        .app-wrap{max-width:480px;margin:0 auto;min-height:100vh;position:relative;padding:0 0 80px 0}
+        .app-header{position:sticky;top:0;z-index:10;background:var(--k2-bg);border-bottom:2px solid var(--k2-neutral);display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+        .header-left{display:flex;align-items:center;gap:10px}
+        .btn-back{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border:2px solid var(--k2-neutral);border-radius:var(--r-full);font-size:13px;font-weight:700;color:var(--k2-primary-dark);transition:all 0.2s}
+        .btn-back:hover{background:var(--k2-neutral)}
+        .brand-text-k2{font-family:'Fredoka One',cursive;font-size:22px;background:linear-gradient(90deg,#96A480,#BA797D,#F9E6A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #5c4534;filter:drop-shadow(0 2px 4px rgba(101,86,75,0.25))}
+        .header-subtitle{font-size:11px;font-weight:600;color:var(--k2-primary-dark)}
+        .header-logo-wrap{width:40px;height:40px;border-radius:12px;background:#F8F5F2;border:2px solid var(--k2-neutral);display:flex;align-items:center;justify-content:center;font-size:22px}
+        .cart-badge{background:#E7648E;color:white;font-size:10px;font-weight:800;padding:1px 6px;border-radius:var(--r-full);margin-left:4px}
+        .app-content{padding:16px}
+        .section-title{font-size:15px;font-weight:800;color:var(--k2-dark);margin-bottom:12px;margin-top:4px}
+        .section-title-sub{display:block;font-size:11px;font-weight:600;color:var(--k2-primary-dark);margin-top:2px}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:var(--r-md);font-family:inherit;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.2s}
+        .btn-primary{background:var(--k2-primary);color:white;box-shadow:0 4px 12px rgba(186,121,125,0.25)}
+        .btn-primary:hover{opacity:0.9;transform:translateY(-1px)}
+        .btn-sm{padding:7px 14px;font-size:13px}
+        .btn-block{width:100%;display:flex}
+        .btn-outline{background:transparent;border:2px solid var(--k2-primary);color:var(--k2-primary)}
+        .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--r-full);font-size:11px;font-weight:800}
+        .badge-open{background:#dcfce7;color:#15803d}
+        .badge-closed{background:#f1f5f9;color:#94a3b8}
+        .empty-state{text-align:center;padding:40px 16px}
+        .empty-icon{font-size:48px;display:block;margin-bottom:12px}
+        .empty-title{font-size:16px;font-weight:800;color:var(--k2-dark);margin-bottom:6px}
+        .empty-text{font-size:13px;color:var(--k2-primary-dark);font-weight:500}
+        .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .product-card{background:white;border-radius:var(--r-md);overflow:hidden;box-shadow:0 2px 10px rgba(231,100,142,0.08);border:1px solid rgba(231,100,142,0.08);display:flex;flex-direction:column}
+        .product-img{width:100%;aspect-ratio:4/3;object-fit:cover}
+        .product-img-placeholder{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:#F1F5F9;font-size:40px}
+        .product-info{padding:10px 12px 12px;display:flex;flex-direction:column;flex:1}
+        .product-name{font-size:13px;font-weight:700;color:var(--k2-dark);margin-bottom:4px}
+        .product-price{font-size:15px;font-weight:900;color:var(--k2-primary-dark);margin-bottom:4px}
+        .product-stock{font-size:11px;font-weight:600;color:#94a3b8;margin-bottom:6px}
+        .product-stock.low{color:#f59e0b}
+        .product-stock.out{color:#ef4444}
+        .search-wrap{position:relative;margin-bottom:14px}
+        .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;z-index:1}
+        .search-input{width:100%;padding:10px 14px 10px 40px;border-radius:var(--r-full);border:2px solid var(--k2-neutral);font-family:inherit;font-size:14px;background:white;outline:none}
+        .search-input:focus{border-color:var(--k2-primary)}
+        .float-cart{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--k2-primary);color:white;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(186,121,125,0.35);z-index:20;transition:transform 0.2s}
+        .float-cart:hover{transform:scale(1.1)}
+        .float-cart-badge{position:absolute;top:-4px;right:-4px;background:#E7648E;color:white;font-size:11px;font-weight:800;padding:2px 6px;border-radius:var(--r-full);min-width:20px;text-align:center}
+        .warung-grid{display:flex;flex-direction:column;gap:10px}
+        .warung-item{text-decoration:none}
+        .qty-control{display:inline-flex;align-items:center;gap:6px;background:#F8F5F2;border:2px solid var(--k2-neutral);border-radius:var(--r-full);padding:4px}
+        .qty-btn{width:28px;height:28px;border-radius:50%;border:2px solid var(--k2-primary);background:white;color:var(--k2-primary);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .qty-num{font-size:14px;font-weight:800;color:var(--k2-primary);min-width:20px;text-align:center}
+        .alert{padding:10px 14px;border-radius:var(--r-md);font-size:13px;margin-bottom:12px;font-weight:500}
+        .alert-warning{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+        .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;align-items:flex-end;justify-content:center}
+        .modal-overlay.active{display:flex}
+        .modal-sheet{background:white;border-radius:var(--r-xl) var(--r-xl) 0 0;width:100%;max-width:480px;padding:20px;animation:slideUp 0.3s ease}
+        @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+        .modal-handle{width:40px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 16px}
+        .order-status-card{background:white;border-radius:var(--r-md);padding:14px;margin-bottom:10px;box-shadow:0 2px 10px rgba(231,100,142,0.08);border:1px solid rgba(231,100,142,0.08)}
+        .logo-k2hub-gradient{font-family:'Fredoka One',cursive;background:linear-gradient(90deg,#96A480,#BA797D,#F9E6A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1.5px #5c4534;filter:drop-shadow(0 4px 6px rgba(101,86,75,0.25))}
+        .footer-text{text-align:center;padding:20px 16px;font-size:11px;color:var(--k2-primary-dark);font-weight:500}
+        .nav-bottom{position:fixed;bottom:0;left:0;right:0;background:var(--k2-bg);border-top:2px solid var(--k2-neutral);display:flex;justify-content:space-around;padding:8px 0;z-index:10}
+        .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 12px;border-radius:var(--r-md);font-size:10px;font-weight:700;color:var(--k2-primary-dark);transition:all 0.2s}
+        .nav-item.active{color:var(--k2-primary)}
+        .nav-item span{font-size:20px}
+        .welcome-header-bar{position:absolute;top:0;left:0;right:0;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+        .welcome-footer{position:absolute;bottom:0;left:0;right:0;padding:12px;text-align:center;font-size:11px;color:#96A480;font-weight:500}
+        .choice-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px 20px;border-radius:18px;border:none;cursor:pointer;text-decoration:none;transition:all 0.25s;margin-bottom:12px;text-align:left}
+        .choice-btn:hover{transform:scale(1.025)}
+        .choice-btn:active{transform:scale(0.97)}
+        .choice-btn-student{background:#BA797D}
+        .choice-btn-owner{background:#96A480;border:1.5px solid #F9E6A7}
+        .choice-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+        .icon-student{background:rgba(255,255,255,0.15)}
+        .icon-owner{background:rgba(255,255,255,0.15);border:1px solid #F9E6A7}
+        .choice-title{font-size:16px;font-weight:800;margin-bottom:2px;color:#F8F5F2}
+        .choice-desc{font-size:12px;font-weight:500;color:#F9E6A7}
+        .choice-arrow{margin-left:auto;font-size:18px;color:#F8F5F2}
+        .status-chip{background:#F8F5F2;border:1px solid #F9E6A7;color:#BA797D;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700}
+        .bg{position:fixed;inset:0;z-index:-1}
+        
+    </style>
+</head>
+<body><div class="app-wrap">
+    <div class="app-header">
+        <div class="header-left">
+            <a href="javascript:history.back()" class="btn-back">‹ Kembali</a>
+            <div class="header-logo-wrap" style="font-size:22px;">🍜</div>
+            <div><div class="brand-text-k2" style="font-size:18px;">Kantin Hijau</div><div class="header-subtitle">Buka · 🕐 06:30 - 16:00</div></div>
+        </div>
+    </div>
+    <div class="app-content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+            <div style="background:white;border-radius:16px;padding:14px;text-align:center;border:1px solid rgba(231,100,142,0.08);">
+                <div style="font-size:28px;">📋</div>
+                <div style="font-size:24px;font-weight:900;color:#BA797D;">1</div>
+                <div style="font-size:11px;color:#96A480;font-weight:600;">Pesanan Baru</div>
+            </div>
+            <div style="background:white;border-radius:16px;padding:14px;text-align:center;border:1px solid rgba(231,100,142,0.08);">
+                <div style="font-size:28px;">✅</div>
+                <div style="font-size:24px;font-weight:900;color:#96A480;">45</div>
+                <div style="font-size:11px;color:#96A480;font-weight:600;">Selesai Hari Ini</div>
+            </div>
+        </div>
+        <div class="section-title">Pesanan Baru</div>
+        <div class="order-status-card">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:10px;">
+                <div>
+                    <div style="font-size:20px;font-family:'Fredoka One',cursive;color:#BA797D;">No. A001</div>
+                    <div style="font-size:12px;color:#96A480;font-weight:600;">Budi Santoso · Kelas VII-A</div>
+                </div>
+                <span class="badge badge-open" style="background:#F9E6A7;color:#92400e;">⏳ Baru</span>
+            </div>
+            <div style="font-size:12px;margin-bottom:8px;color:#2D1B3D;">
+                <div>🍚 Nasi Goreng × 2</div>
+                <div>🥤 Es Teh × 1</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f0f0f0;padding-top:10px;">
+                <span style="font-weight:800;color:#96A480;font-size:14px;">Rp16.000</span>
+                <div style="display:flex;gap:8px;">
+                    <button style="padding:6px 14px;border-radius:999px;border:2px solid #BA797D;background:transparent;color:#BA797D;font-size:12px;font-weight:700;cursor:pointer;">Tolak</button>
+                    <button style="padding:6px 14px;border-radius:999px;background:#96A480;color:white;border:none;font-size:12px;font-weight:700;cursor:pointer;">Proses</button>
+                </div>
+            </div>
+        </div>
+        <div class="empty-state">
+            <span class="empty-icon">📋</span>
+            <div class="empty-title">Tidak ada pesanan lain</div>
+        </div>
+    </div>
+</div>
